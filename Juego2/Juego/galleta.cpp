@@ -20,35 +20,11 @@ void Galleta::setVy(float newVy)
     vy = newVy;
 }
 
-float Galleta::getAx() const
+void Galleta::advance(float vel)
 {
-    return ax;
-}
-
-void Galleta::setAx(float newAx)
-{
-    ax = newAx;
-}
-
-float Galleta::getAy() const
-{
-    return ay;
-}
-
-void Galleta::setAy(float newAy)
-{
-    ay = newAy;
-}
-
-void Galleta::advance(int phase)
-{
-    //vx = vx + ax*DT;
-    vy = vy + ay*DT;
-
-    //px = px + vx*DT +0.5*ax*DT*DT;
-    py = py + vy*DT +0.5*ay*DT*DT;
-
+    py += vel;
     setPos(px,py);
+
 }
 
 float Galleta::getPy() const
@@ -71,16 +47,39 @@ void Galleta::setPx(float newPx)
     px = newPx;
 }
 
-Galleta::Galleta()
+float Galleta::getDx() const
 {
-    dx = 15;
-    dy = 15;
+    return dx;
 }
 
-Galleta::Galleta(float px, float py) : px(px), py(py)
+void Galleta::setDx(float newDx)
 {
-    dx = 16;
-    dy = 16;
+    dx = newDx;
+}
+
+float Galleta::getDy() const
+{
+    return dy;
+}
+
+void Galleta::setDy(float newDy)
+{
+    dy = newDy;
+}
+
+
+Galleta::Galleta(QObject *parent)
+: QObject{parent}
+{
+    px=rand()%1300;
+    py=10;
+    dx = 60;
+    dy = 60;
+    if(rand()%2==0){
+        pixmap = new QPixmap(":/galleta.png");
+    }else{
+        pixmap = new QPixmap(":/dona.png");
+    }
     setPos(px,py);
 }
 
@@ -92,7 +91,6 @@ QRectF Galleta::boundingRect() const
 
 void Galleta::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QPixmap pixman(":/Sprites/donaa.png");
-    painter->drawPixmap(0,0,20,20,pixman);
-}
 
+    painter->drawPixmap(0,0,dx,dy,*pixmap);
+}

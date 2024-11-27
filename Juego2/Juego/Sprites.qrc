@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>CasaHomero9bit.png</file>
+        <file>Homero.png</file>
+        <file>donaa.png</file>
+        <file>brocoli.PNG</file>
+        <file>dona.png</file>
+        <file>galleta.png</file>
+        <file>zanahoria.png</file>
+    </qresource>
+</RCC>

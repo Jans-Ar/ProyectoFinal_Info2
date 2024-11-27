@@ -1,11 +1,13 @@
-#include "tablero.h"
+#include "mainwindow.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Tablero w;
+    MainWindow w;
+    w.setWindowTitle("Homero King Size");
+
     w.show();
     return a.exec();
 }

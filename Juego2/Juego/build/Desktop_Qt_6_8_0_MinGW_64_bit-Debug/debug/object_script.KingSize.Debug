@@ -1,0 +1,11 @@
+debug/galleta.o
+debug/jugador.o
+debug/main.o
+debug/mainwindow.o
+debug/saludables.o
+debug/score.o
+debug/tiempo.o
+debug/qrc_Sprites.o
+debug/moc_jugador.o
+debug/moc_mainwindow.o
+debug/moc_saludables.o
