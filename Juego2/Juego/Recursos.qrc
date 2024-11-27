@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/Sprites">
-        <file>personaje.png</file>
-        <file>pngegg.png</file>
-        <file>donaa.png</file>
-        <file>sad.jpg</file>
-        <file>homero.png.png</file>
-    </qresource>
-</RCC>
