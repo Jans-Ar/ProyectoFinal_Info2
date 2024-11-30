@@ -14,6 +14,10 @@
 #include "saludables.h"
 #include "score.h"
 #include "tiempo.h"
+#include "bloque.h"
+#include <iostream>
+#include <fstream>
+#include "nivel2.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,7 +38,6 @@ public slots:
     void onUpdate();
     void generarGalletas();
     void reducirTiempo();
-    void siguienteNivel();
 
 private:
     Ui::MainWindow *ui;
@@ -54,5 +57,8 @@ private:
 
     Score *score;
     Tiempo *miT;
+
+
+    Nivel2 *N2;
 };
 #endif // MAINWINDOW_H

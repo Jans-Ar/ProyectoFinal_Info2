@@ -1,11 +1,16 @@
+release/bloque.o
 release/galleta.o
 release/jugador.o
 release/main.o
 release/mainwindow.o
+release/menu.o
+release/nivel2.o
 release/saludables.o
 release/score.o
 release/tiempo.o
 release/qrc_Sprites.o
 release/moc_jugador.o
 release/moc_mainwindow.o
+release/moc_menu.o
+release/moc_nivel2.o
 release/moc_saludables.o

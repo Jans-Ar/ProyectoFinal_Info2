@@ -3,10 +3,10 @@
 
 Tiempo::Tiempo(QGraphicsItem *parent)
 {
-    temp = 40;
+    tiempo = 15;
 
     // Configura el texto del puntaje
-    setPlainText(QString("Tiempo: ") + QString::number(score)); // Inicialmente "SCORE: 0"
+    setPlainText(QString("Tiempo: ") + QString::number(tiempo)); // Inicialmente "SCORE: 0"
 
     // Cambia el color del texto a uno más vibrante
     setDefaultTextColor(Qt::white);
@@ -25,17 +25,28 @@ Tiempo::Tiempo(QGraphicsItem *parent)
 
 void Tiempo::reducirT()
 {
-    if(temp>0){
-        temp--;
-        setPlainText(QString("Tiempo: ")+QString::number(temp));
-    }else if(temp==0){
-         setPlainText(QString("Game Over"));
+    if(tiempo>0){
+        tiempo--;
+        setPlainText(QString("Tiempo: ")+QString::number(tiempo));
     }
 }
-void Tiempo :: sigNivel()
-{
-    if (score==3 && temp>0){
-         setPlainText(QString("siguiente nivel"));
 
-        }
+void Tiempo::gameOver()
+{
+    setFont(QFont("Verdana", 40, QFont::Bold));
+    setPlainText(QString("Game Over"));
+    px = 530;
+    py = 380;
+    setPos(px, py);
 }
+
+void Tiempo::win()
+{
+    setFont(QFont("Verdana", 40, QFont::Bold));
+    setPlainText(QString("Siguiente Nivel"));
+    px = 430;
+    py = 380;
+    setPos(px, py);
+}
+
+

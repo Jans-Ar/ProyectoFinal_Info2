@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     Homero -> setPos(0,630);
 
     tiempo = new QTimer;
-    tiempo->start(100);
+    tiempo->start(40);
     connect(tiempo, &QTimer::timeout,
         this, &MainWindow::onUpdate);
 
@@ -46,15 +46,15 @@ MainWindow::MainWindow(QWidget *parent)
     tPartida->start(1000);
 
     connect(tPartida, &QTimer::timeout, this, &MainWindow::reducirTiempo);
-    connect(tPartida, &QTimer::timeout, this, &MainWindow::siguienteNivel);
 
-    puerta1 = new QGraphicsLineItem(0,650,0,750);
+
+    puerta1 = new QGraphicsLineItem(10,650,10,750);
     escena->addItem(puerta1);
 
     puerta2 = new QGraphicsLineItem(1340,650,1340,750);
     escena->addItem(puerta2);
 
-    velGalletas=15;
+    velGalletas=10;
 
     score = new Score();
     escena->addItem(score);
@@ -71,19 +71,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-/*void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-    if(Homero!=nullptr&& !event->isAutoRepeat()){
-        if(event->key()==Qt::Key_W){
-            Homero->setSalto(true);
-            //p1->setVy(0);
-            qDebug()<<"hola";
-        }
-    }else{
-        qDebug()<<"ho";
-    }
-}*/
 
 void MainWindow::onUpdate()
 {
@@ -105,14 +92,6 @@ void MainWindow::onUpdate()
                 score->increase();
 
             }
-
-            /*if(salud){
-                escena->removeItem(salud);
-                saludable.removeOne(salud);
-                qDebug()<<"Saludables: "<<saludable.size();
-
-            }*/
-
 
             QGraphicsLineItem *puerta = dynamic_cast<QGraphicsLineItem *>(c);
             if(puerta){
@@ -167,24 +146,64 @@ void MainWindow::onUpdate()
 
 void MainWindow::generarGalletas()
 {
-    if(rand()%2==0){
-        Galletas.push_back(new Galleta());
-        escena->addItem(Galletas.last());
-    }else{
-        saludable.push_back(new saludables());
-        escena->addItem(saludable.last());
+    if(miT->getTiempo()>0){
+        if(rand()%2==0){
+            Galletas.push_back(new Galleta());
+            escena->addItem(Galletas.last());
+        }else{
+            saludable.push_back(new saludables());
+            escena->addItem(saludable.last());
+        }
+
+        velGalletas+=0.7;
     }
-
-    velGalletas+=0.7;
-
 }
 
 void MainWindow::reducirTiempo()
 {
     miT->reducirT();
+    if(miT->getTiempo()==0){
+        Homero->setMove(false);
+        if(score->getscore()>=1){
+            miT->win();
+            /*for (int i = 0; i < Galletas.size(); i++) {
+                Galleta* galleta = Galletas[i];
+                escena->removeItem(galleta);
+                Galletas.removeOne(galleta);
+            }
+
+            for (int i = 0; i < saludable.size(); i++) {
+                saludables* salud = saludable[i];
+                escena->removeItem(salud);
+                saludable.removeOne(salud);
+            }
+            escena->removeItem(puerta1);
+            escena->removeItem(puerta2);
+            escena->removeItem(score);
+            //escena->removeItem(miT);
+            tiempo->stop();
+            timeGalletas->stop();
+            tPartida->stop();
+
+            tiempo->start(40);
+            connect(tiempo, &QTimer::timeout,
+                    this, &MainWindow::nivel2);
+            this->generarMapa();*/
+
+            N2 = new Nivel2();
+            N2->setWindowTitle("Nivel 2");
+            N2->show();
+            tPartida->stop();
+
+            // Cerrar la ventana actual
+            this->close();
+
+        }else{
+            miT->gameOver();
+        }
+
+    }
 }
 
-void MainWindow::siguienteNivel()
-{
-    miT->sigNivel();
-}
+
+

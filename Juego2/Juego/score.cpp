@@ -70,4 +70,14 @@ QGraphicsDropShadowEffect *Score::createShadowEffect()
     return shadowEffect;
 }
 
+int Score::getTiempo() const
+{
+    return tiempo;
+}
+
+void Score::setTiempo(int newTiempo)
+{
+    tiempo = newTiempo;
+}
+
 

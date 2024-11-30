@@ -8,10 +8,8 @@ class Tiempo : public Score
 public:
     Tiempo(QGraphicsItem *parent=0);
     void reducirT();
-    void sigNivel();
-
-private:
-    int temp;
+    void gameOver();
+    void win();
 };
 
 #endif // TIEMPO_H

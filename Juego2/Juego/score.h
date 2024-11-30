@@ -24,10 +24,14 @@ public:
     void setScore(int newScore);
     QGraphicsDropShadowEffect* createShadowEffect();
 
+    int getTiempo() const;
+    void setTiempo(int newTiempo);
+
 protected:
     int score;
     float px;
     float py;
+    int tiempo;
 };
 
 #endif // SCORE_H

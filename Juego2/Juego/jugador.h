@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QGraphicsView>
 #include <QTimer>
+#include <cmath>
 #define DT 0.2
 
 class Jugador:public QObject,public QGraphicsPixmapItem
@@ -21,17 +22,22 @@ private:
     QPixmap hojaSprites; //plantilla de spirtes
     QPixmap sprite;      //sprite actual
     int cont = 0;
-    QTimer *timerMov;
+    int dirS;
     float vx, vy;
     float ax, ay;
     float t;
+    bool move;
+    int lInf;
+    int lSup;
 
-    bool salto=false;
+    bool salto;
+    bool caer;
 public:
     Jugador();
     void keyPressEvent(QKeyEvent *evento) override;
     void movimiento(int vx2, int vy2);
     void saltar();
+    void caida();
     void confSprite(int dir);
     float getVx() const;
     void setVx(float newVx);
@@ -49,6 +55,18 @@ public:
     void setX(qreal newX);
     float getT() const;
     void setT(float newT);
+    bool getMove() const;
+    void setMove(bool newMove);
+    int getLInf() const;
+    void setLInf(int newLInf);
+    int getLSup() const;
+    void setLSup(int newLSup);
+    bool getCaer() const;
+    void setCaer(bool newCaer);
+    int getCont() const;
+    void setCont(int newCont);
+    int getDirS() const;
+    void setDirS(int newDirS);
 };
 
 #endif // JUGADOR_H
