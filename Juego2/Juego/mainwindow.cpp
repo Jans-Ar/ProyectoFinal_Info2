@@ -2,18 +2,19 @@
 #include "ui_mainwindow.h"
 #include "jugador.h"
 #include "saludables.h"
-#include <Qdebug>
+#include <QDebug>
 #include <QGraphicsView>
 #include <QScreen>
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Configuración de la escena
     escena = new QGraphicsScene(this);
-    escena->setSceneRect(0,0,1500,900);
+    escena->setSceneRect(0, 0, 1500, 900);
     escena->setBackgroundBrush(QBrush(QImage(":/CasaHomero9bit.png")));
     ui->graphicsView->setScene(escena);
 
@@ -24,46 +25,43 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setResizeAnchor(QGraphicsView::NoAnchor);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
 
-    //connect(ui->pB_start, &QPushButton::clicked,
-    //        this, &Tablero::onStart);
-
-    //ui->graphicsView->setScene(escena);
+    // Configuración de Homero
     Homero = new Jugador;
-    escena -> addItem(Homero);
-    Homero -> setPos(0,630);
+    escena->addItem(Homero);
+    Homero->setPos(0, 630);
 
+    // Configurar enfoque en Homero
+    escena->setFocusItem(Homero);
+
+    // Temporizadores para la lógica del juego
     tiempo = new QTimer;
     tiempo->start(40);
-    connect(tiempo, &QTimer::timeout,
-        this, &MainWindow::onUpdate);
+    connect(tiempo, &QTimer::timeout, this, &MainWindow::onUpdate);
 
     timeGalletas = new QTimer();
     timeGalletas->start(2000);
-
     connect(timeGalletas, &QTimer::timeout, this, &MainWindow::generarGalletas);
 
     tPartida = new QTimer();
     tPartida->start(1000);
-
     connect(tPartida, &QTimer::timeout, this, &MainWindow::reducirTiempo);
 
-
-    puerta1 = new QGraphicsLineItem(10,650,10,750);
+    // Configuración de puertas
+    puerta1 = new QGraphicsLineItem(0, 650, 0, 750); // Coordenadas corregidas
     escena->addItem(puerta1);
 
-    puerta2 = new QGraphicsLineItem(1340,650,1340,750);
+    puerta2 = new QGraphicsLineItem(1340, 650, 1340, 750);
     escena->addItem(puerta2);
 
-    velGalletas=10;
+    // Configuración de puntuación y tiempo
+    velGalletas = 10;
 
     score = new Score();
     escena->addItem(score);
 
-
     miT = new Tiempo();
     escena->addItem(miT);
 }
-
 
 
 

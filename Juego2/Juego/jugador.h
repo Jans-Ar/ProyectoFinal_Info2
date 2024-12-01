@@ -1,5 +1,6 @@
 #ifndef JUGADOR_H
 #define JUGADOR_H
+
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
@@ -7,10 +8,12 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <cmath>
+#include <map>
+#include <QKeyEvent> // Importante para manejar eventos de teclado
+
 #define DT 0.2
 
-class Jugador:public QObject,public QGraphicsPixmapItem
-{
+class Jugador : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 private:
     qreal x = 0;
@@ -19,26 +22,36 @@ private:
     int spriteY = 0;
     int spriteAncho = 129;
     int spriteAlto = 126;
-    QPixmap hojaSprites; //plantilla de spirtes
-    QPixmap sprite;      //sprite actual
+    QPixmap hojaSprites; // Plantilla de sprites
+    QPixmap sprite;      // Sprite actual
     int cont = 0;
     int dirS;
     float vx, vy;
     float ax, ay;
     float t;
     bool move;
+    int velocidad;
     int lInf;
     int lSup;
-
+    QTimer *timerMov;
     bool salto;
     bool caer;
+    int spriteCont = 0;
+    std::map<int, bool> keys; // Manejo de teclas presionadas
+
+public slots:
+    void update();
+
 public:
     Jugador();
-    void keyPressEvent(QKeyEvent *evento) override;
+    void keyPressEvent(QKeyEvent *evento) override;  // Evento de tecla presionada
+    void keyReleaseEvent(QKeyEvent *evento) override; // Evento de tecla liberada
     void movimiento(int vx2, int vy2);
     void saltar();
     void caida();
     void confSprite(int dir);
+
+    // Métodos getters y setters
     float getVx() const;
     void setVx(float newVx);
     float getVy() const;
