@@ -10,26 +10,34 @@ CONFIG += c++17
 
 SOURCES += \
     bloque.cpp \
+    enemy.cpp \
     galleta.cpp \
     jugador.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
     nivel2.cpp \
+    pendulosimple.cpp \
+    proyectil.cpp \
     saludables.cpp \
     score.cpp \
-    tiempo.cpp
+    tiempo.cpp \
+    trampolin.cpp
 
 HEADERS += \
     bloque.h \
+    enemy.h \
     galleta.h \
     jugador.h \
     mainwindow.h \
     menu.h \
     nivel2.h \
+    pendulosimple.h \
+    proyectil.h \
     saludables.h \
     score.h \
-    tiempo.h
+    tiempo.h \
+    trampolin.h
 
 FORMS += \
     mainwindow.ui \

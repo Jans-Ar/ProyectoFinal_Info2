@@ -2,19 +2,18 @@
 #include "ui_mainwindow.h"
 #include "jugador.h"
 #include "saludables.h"
-#include <QDebug>
+#include <Qdebug>
 #include <QGraphicsView>
 #include <QScreen>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    // Configuración de la escena
     escena = new QGraphicsScene(this);
-    escena->setSceneRect(0, 0, 1500, 900);
+    escena->setSceneRect(0,0,1500,900);
     escena->setBackgroundBrush(QBrush(QImage(":/CasaHomero9bit.png")));
     ui->graphicsView->setScene(escena);
 
@@ -25,43 +24,45 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setResizeAnchor(QGraphicsView::NoAnchor);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
 
-    // Configuración de Homero
+    //connect(ui->pB_start, &QPushButton::clicked,
+    //        this, &Tablero::onStart);
+
+    //ui->graphicsView->setScene(escena);
     Homero = new Jugador;
-    escena->addItem(Homero);
-    Homero->setPos(0, 630);
+    escena -> addItem(Homero);
 
-    // Configurar enfoque en Homero
-    escena->setFocusItem(Homero);
-
-    // Temporizadores para la lógica del juego
     tiempo = new QTimer;
     tiempo->start(40);
-    connect(tiempo, &QTimer::timeout, this, &MainWindow::onUpdate);
+    connect(tiempo, &QTimer::timeout,
+        this, &MainWindow::onUpdate);
 
     timeGalletas = new QTimer();
     timeGalletas->start(2000);
+
     connect(timeGalletas, &QTimer::timeout, this, &MainWindow::generarGalletas);
 
     tPartida = new QTimer();
     tPartida->start(1000);
+
     connect(tPartida, &QTimer::timeout, this, &MainWindow::reducirTiempo);
 
-    // Configuración de puertas
-    puerta1 = new QGraphicsLineItem(0, 650, 0, 750); // Coordenadas corregidas
+
+    puerta1 = new QGraphicsLineItem(10,650,10,750);
     escena->addItem(puerta1);
 
-    puerta2 = new QGraphicsLineItem(1340, 650, 1340, 750);
+    puerta2 = new QGraphicsLineItem(1340,650,1340,750);
     escena->addItem(puerta2);
 
-    // Configuración de puntuación y tiempo
-    velGalletas = 10;
+    velGalletas=10;
 
     score = new Score();
     escena->addItem(score);
 
+
     miT = new Tiempo();
     escena->addItem(miT);
 }
+
 
 
 
@@ -164,29 +165,6 @@ void MainWindow::reducirTiempo()
         Homero->setMove(false);
         if(score->getscore()>=1){
             miT->win();
-            /*for (int i = 0; i < Galletas.size(); i++) {
-                Galleta* galleta = Galletas[i];
-                escena->removeItem(galleta);
-                Galletas.removeOne(galleta);
-            }
-
-            for (int i = 0; i < saludable.size(); i++) {
-                saludables* salud = saludable[i];
-                escena->removeItem(salud);
-                saludable.removeOne(salud);
-            }
-            escena->removeItem(puerta1);
-            escena->removeItem(puerta2);
-            escena->removeItem(score);
-            //escena->removeItem(miT);
-            tiempo->stop();
-            timeGalletas->stop();
-            tPartida->stop();
-
-            tiempo->start(40);
-            connect(tiempo, &QTimer::timeout,
-                    this, &MainWindow::nivel2);
-            this->generarMapa();*/
 
             N2 = new Nivel2();
             N2->setWindowTitle("Nivel 2");

@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QPixmap> //generar imagen
 
-enum Ladrillo{ fijo=2, destructible=1, vacio=0};
+enum Ladrillo{ fijo=2, destructible=1, vacio=0, trampolin=3, puerta=5};
 class Bloque : public QGraphicsItem
 {
 public:
@@ -23,10 +23,18 @@ public:
     void setTipo(int newTipo);
     void setBpx(float newBpx);
     void setBpy(float newBpy);
+    int getDx() const;
+    void setDx(int newDx);
+
+    int getDy() const;
+    void setDy(int newDy);
+
 private:
     int tipo;
     float bpx;
     float bpy;
+    int dx;
+    int dy;
 };
 
 #endif // BLOQUE_H

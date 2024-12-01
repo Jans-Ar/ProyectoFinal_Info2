@@ -9,8 +9,18 @@
         <file>zanahoria.png</file>
         <file>balota.png</file>
         <file>bloque1.png</file>
+        <file>sierra.png</file>
+        <file>enemy.png</file>
+        <file>enemy2.png</file>
+        <file>trampolin.png</file>
+        <file>bala2.png</file>
         <file>Homero2.png</file>
+        <file>balaD.png</file>
+        <file>balaI.png</file>
+        <file>puerta.png</file>
+        <file>Menu.jpg</file>
         <file>springfield (2).png</file>
         <file>piedra.png</file>
+        <file>planta.png</file>
     </qresource>
 </RCC>

@@ -1,6 +1,5 @@
 #ifndef JUGADOR_H
 #define JUGADOR_H
-
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
@@ -8,50 +7,46 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <cmath>
-#include <map>
-#include <QKeyEvent> // Importante para manejar eventos de teclado
-
 #define DT 0.2
 
-class Jugador : public QObject, public QGraphicsPixmapItem {
+class Jugador:public QObject,public QGraphicsPixmapItem
+{
     Q_OBJECT
-private:
+protected:
     qreal x = 0;
     qreal y = 0;
-    int spriteX = 0;
-    int spriteY = 0;
-    int spriteAncho = 129;
-    int spriteAlto = 126;
-    QPixmap hojaSprites; // Plantilla de sprites
-    QPixmap sprite;      // Sprite actual
+    int spriteX;
+    int spriteY;
+    int spriteAncho;
+    int spriteAlto;
+    QPixmap hojaSprites; //plantilla de spirtes
+    QPixmap sprite;      //sprite actual
     int cont = 0;
     int dirS;
     float vx, vy;
     float ax, ay;
     float t;
     bool move;
-    int velocidad;
-    int lInf;
-    int lSup;
-    QTimer *timerMov;
+    float lInf;
+    float lSup;
+    float ld;
+    float li;
+
     bool salto;
     bool caer;
-    int spriteCont = 0;
-    std::map<int, bool> keys; // Manejo de teclas presionadas
-
-public slots:
-    void update();
+    bool tram;
+    bool disparar;
 
 public:
     Jugador();
-    void keyPressEvent(QKeyEvent *evento) override;  // Evento de tecla presionada
-    void keyReleaseEvent(QKeyEvent *evento) override; // Evento de tecla liberada
+    void keyPressEvent(QKeyEvent *evento) override;
     void movimiento(int vx2, int vy2);
     void saltar();
     void caida();
+    void trampolin();
     void confSprite(int dir);
 
-    // Métodos getters y setters
+
     float getVx() const;
     void setVx(float newVx);
     float getVy() const;
@@ -70,16 +65,25 @@ public:
     void setT(float newT);
     bool getMove() const;
     void setMove(bool newMove);
-    int getLInf() const;
-    void setLInf(int newLInf);
-    int getLSup() const;
-    void setLSup(int newLSup);
     bool getCaer() const;
     void setCaer(bool newCaer);
     int getCont() const;
     void setCont(int newCont);
     int getDirS() const;
     void setDirS(int newDirS);
+    void setTrampolin(bool newTrampolin);
+    bool getTram() const;
+    void setTram(bool newTram);
+    bool getDisparar() const;
+    void setDisparar(bool newDisparar);
+    float getLInf() const;
+    void setLInf(float newLInf);
+    float getLSup() const;
+    void setLSup(float newLSup);
+    float getLd() const;
+    void setLd(float newLd);
+    float getLi() const;
+    void setLi(float newLi);
 };
 
 #endif // JUGADOR_H
