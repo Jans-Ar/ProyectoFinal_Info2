@@ -19,6 +19,10 @@
 #include <fstream>
 #include "nivel2.h"
 
+#include <QMediaPlayer>
+#include <QUrl>
+#include <QAudioOutput>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -60,5 +64,8 @@ private:
 
 
     Nivel2 *N2;
+
+    QMediaPlayer* musicaFondo;
+    QAudioOutput* volumen;
 };
 #endif // MAINWINDOW_H

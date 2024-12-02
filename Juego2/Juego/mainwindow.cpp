@@ -61,6 +61,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     miT = new Tiempo();
     escena->addItem(miT);
+
+        //musica de fondo
+    musicaFondo = new QMediaPlayer(this);
+    musicaFondo->setSource(QUrl("qrc:/Musica de fondo.mp3"));
+    volumen = new QAudioOutput(this);
+    volumen->setVolume(0.2);
+    musicaFondo->setAudioOutput(volumen);
+    musicaFondo->setLoops(QMediaPlayer::Infinite);
+    musicaFondo->play();
 }
 
 
