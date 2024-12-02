@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="btnN1">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>270</x>
       <y>80</y>
       <width>75</width>
       <height>24</height>
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="btnN2">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>270</x>
       <y>110</y>
       <width>75</width>
       <height>24</height>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="btnSalir">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>270</x>
       <y>140</y>
       <width>75</width>
       <height>24</height>
@@ -56,7 +56,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>270</x>
       <y>50</y>
       <width>91</width>
       <height>16</height>
